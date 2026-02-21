@@ -12,15 +12,14 @@
         <div>
             <div>
                 <h5>Clients</h5>
-                <p>Enregistrer un nouveau client dans la base.</p>
                 <a href="{{ path('app_register') }}">Créer un Compte</a>
             </div>
 
             <hr>
 
             <div>
-                <h5>Télécharger Contrat</h5>
-                <p>Entrez l'id de votre bateau :</p>
+                <h5>Enregistrer un Bateau </h5>
+                <p>Entrez votre nom :</p>
                 <form action="{{ path('app_boat_new') }}">
                     <label>
                         <input type="text" name="firstname" class="form-control" placeholder="Ex: Théo" required>
@@ -33,12 +32,12 @@
 
             <div>
                 <h5>Télécharger mon Contrat PDF</h5>
-                <p>Entrez le numéro (ID) de votre bateau :</p>
+                <p>Entrez le numéro ID de votre bateau (possible de le voir dans la liste des bateaux) :</p>
 
                 <form action="{{ path('app_insurance_download') }}" method="GET">
                     <div class="input-group mb-3">
                         <input type="number" name="id" class="form-control" placeholder="Ex: 1" required>
-                        <button type="submit" class="btn btn-success">Générer le PDF 📄</button>
+                        <button type="submit" class="btn btn-success">Générer le PDF</button>
                     </div>
                 </form>
             </div>
@@ -50,7 +49,7 @@
                 <p>Voir la flotte globale et les bateaux de luxe.</p>
                 <ul>
                     <li><a href="{{ path('app_boat_list') }}">Tous les bateaux</a></li>
-                    <li><a href="{{ path('app_boat_luxury') }}">Flotte de Luxe 💎</a></li>
+                    <li><a href="{{ path('app_boat_luxury') }}">Flotte de Luxe</a></li>
                     <li><a href="{{ path('app_account_list') }}">Tous les comptes</a></li>
                 </ul>
             </div>
