@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bateaux de {{ account.firstname }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Portefeuille de {{ account.firstname }} {{ account.lastname }}</h1>
+        <p class="text-muted">Email : {{ account.email }}</p>
+
+        <div class="mb-3">
+            <a href="{{ path('app_boat_new', {'firstname': account.firstname}) }}" class="btn btn-primary">
+                + Ajouter un autre bateau
+            </a>
+        </div>
+
+        <hr>
+
+        <h3>Contrats en cours</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom du bateau</th>
+                <th>Valeur d'achat</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for boat in boats %}
+                <tr>
+                    <td>{{ boat.name }}</td>
+                    <td>{{ boat.purchasePrice|number_format(0, ',', ' ') }} €</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun bateau enregistré pour ce compte.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_boat_list') }}" class="btn btn-link">Voir tous les bateaux de la flotte</a>
+    </div>
+{% endblock %}

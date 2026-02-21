@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mes bateaux</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for a in accounts %}
+            <tr>
+                <td>{{ a.id }}</td>
+                <td>{{ a.firstname }}</td>
+                <td>{{ a.lastname }}</td>
+                <td>{{ a.email }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de compte.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <a href="{{ path('app_home') }}" class="btn btn-secondary">
+            Retour Home
+        </a>
+    </div>
+{% endblock %}

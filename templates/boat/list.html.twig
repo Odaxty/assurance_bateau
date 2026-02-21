@@ -3,24 +3,34 @@
 {% block body %}
     <h1>Mes bateaux</h1>
 
-    <table>
+    <table class="table">
         <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prix d'achat</th>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prix d'achat</th>
+            <th>Propriétaire</th>
+        </tr>
         </thead>
         <tbody>
-            {% for boat in boats %}
+        {% for boat in boats %}
             <tr>
+                <td>{{ boat.id }}</td>
                 <td>{{ boat.name }}</td>
-                <td> {{ boat.purchasePrice }}</td>
+                <td>{{ boat.purchasePrice|number_format(2, ',', ' ') }} €</td>
+                <td>{{ boat.account.firstname }} {{ boat.account.lastname }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">Aucun bateau n'a était trouver.</td>
+                <td colspan="4">Aucun bateau n'a été trouvé.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="mt-4">
+        <a href="{{ path('app_home') }}" class="btn btn-secondary">
+            Retour Home
+        </a>
+    </div>
 {% endblock %}

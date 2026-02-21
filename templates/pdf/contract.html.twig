@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: sans-serif; color: #333; }
+        .header { text-align: center; border-bottom: 2px solid #0056b3; padding-bottom: 20px; }
+        .content { margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { font-size: 1.2em; font-weight: bold; color: #0056b3; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Contrat d'Assurance bateau</h1>
+    <p>Émis le {{ date|date('d/m/Y') }}</p>
+</div>
+
+<div class="content">
+    <h3>Informations du Propriétaire</h3>
+    <p>Nom : {{ boat.account.firstname }} {{ boat.account.lastname }}</p>
+
+    <h3>Détails du Bateau</h3>
+    <table>
+        <tr>
+            <th>Nom du Bateau</th>
+            <td>{{ boat.name }}</td>
+        </tr>
+        <tr>
+            <th>Valeur d'Achat</th>
+            <td>{{ boat.purchasePrice|number_format(2, ',', ' ') }} €</td>
+        </tr>
+    </table>
+
+    <h3 class="total">Prime Annuelle Estimée : {{ premium|number_format(2, ',', ' ') }} €</h3>
+</div>
+
+<div style="margin-top: 50px;">
+    <p>Signature du client :</p>
+    <div style="border: 1px solid #000; height: 100px; width: 300px;"></div>
+</div>
+</body>
+</html>

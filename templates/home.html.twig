@@ -1,17 +1,59 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+{% block title %}Projet Assurance{% endblock %}
+
+{% block body %}
+    <div>
+        <div>
+            <h1>⚓ Gestionnaire d'Assurances</h1>
+            <p>Bienvenue sur votre interface de gestion d'assurance</p>
+        </div>
+
+        <div>
+            <div>
+                <h5>Clients</h5>
+                <p>Enregistrer un nouveau client dans la base.</p>
+                <a href="{{ path('app_register') }}">Créer un Compte</a>
+            </div>
+
+            <hr>
+
+            <div>
+                <h5>Télécharger Contrat</h5>
+                <p>Entrez l'id de votre bateau :</p>
+                <form action="{{ path('app_boat_new') }}">
+                    <label>
+                        <input type="text" name="firstname" class="form-control" placeholder="Ex: Théo" required>
+                    </label>
+                    <button type="submit" class="btn btn-primary">Créer le bateau</button>
+                </form>
+            </div>
+
+            <hr>
+
+            <div>
+                <h5>Télécharger mon Contrat PDF</h5>
+                <p>Entrez le numéro (ID) de votre bateau :</p>
+
+                <form action="{{ path('app_insurance_download') }}" method="GET">
+                    <div class="input-group mb-3">
+                        <input type="number" name="id" class="form-control" placeholder="Ex: 1" required>
+                        <button type="submit" class="btn btn-success">Générer le PDF 📄</button>
+                    </div>
+                </form>
+            </div>
+
+            <hr>
+
+            <div>
+                <h5>Statistiques</h5>
+                <p>Voir la flotte globale et les bateaux de luxe.</p>
+                <ul>
+                    <li><a href="{{ path('app_boat_list') }}">Tous les bateaux</a></li>
+                    <li><a href="{{ path('app_boat_luxury') }}">Flotte de Luxe 💎</a></li>
+                    <li><a href="{{ path('app_account_list') }}">Tous les comptes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

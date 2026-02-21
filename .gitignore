@@ -18,3 +18,14 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> IDE & OS ###
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+###< IDE & OS ###
+
+###> Docker ###
+/compose.override.yaml
+###< Docker ###

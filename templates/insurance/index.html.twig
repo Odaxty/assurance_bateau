@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Simulation d'Assurance Marine</h1>
+
+    <p>Bateau : {{ boat.name }}</p>
+    <p>Valeur d'achat : {{ boat.purchasePrice }} €</p>
+    <p> Propriétaure : {{ boat.account.firstname }} {{ boat.account.lastname }}</p>
+    <hr>
+
+    <h3>Votre prime annuelle est de : <strong>{{ priceAssurance }} €</strong></h3>
+{% endblock %}
