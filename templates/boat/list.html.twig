@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mes bateaux</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix d'achat</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for boat in boats %}
+            <tr>
+                <td>{{ boat.name }}</td>
+                <td> {{ boat.purchasePrice }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">Aucun bateau n'a était trouver.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
