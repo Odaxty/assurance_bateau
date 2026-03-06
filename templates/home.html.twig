@@ -44,6 +44,20 @@
 
             <hr>
 
+            <hr>
+            <div>
+                <h5>Trouve ton bateau avec ton nom</h5>
+                <p>Entrez votre nom (possible de le voir dans la liste des accounts) :</p>
+
+                <form action="{{ path('app_boat_propio') }}" method="GET">
+                    <div class="input-group mb-3">
+                        <input type="text" name="firstname" class="form-control" placeholder="Ex: Theo" required>
+                        <button type="submit" class="btn btn-success">Voir les bateaux</button>
+                    </div>
+                </form>
+
+            </div>
+            <hr>
             <div>
                 <h5>Statistiques</h5>
                 <p>Voir la flotte globale et les bateaux de luxe.</p>

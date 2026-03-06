@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 final class BoatController extends AbstractController
 {
@@ -59,7 +60,6 @@ final class BoatController extends AbstractController
             'boats' => $account->getBoats()
         ]);
     }
-
     #[Route('/liste-des-bateaux', name: 'app_boat_list')]
     public function list(BoatRepository $boatRepository): Response
     {
@@ -76,6 +76,48 @@ final class BoatController extends AbstractController
         $boats = $boatRepository->findLuxuryBoats();
         return $this->render('boat/list.html.twig', [
             'boats' => $boats,
+        ]);
+    }
+
+    #[Route('/boats/propio/', name: 'app_boat_propio')]
+    public function listBoatParPropio(Request $request, BoatRepository $boatRepository){
+        $firstname = $request->query->get('firstname');
+
+        if (!$firstname) {
+            $this->addFlash('danger', "Le noms n'est pas dans la basse de données.");
+            return $this->redirectToRoute('app_home');
+        }
+
+        $boats = $boatRepository->findByFirstnameWithCache($firstname);
+
+        return $this->render('boat/list_by_owner.html.twig', [
+            'boats' => $boats,
+            'firstname' => $firstname
+        ]);
+    }
+
+    #[Route('/boats/modif/{id}', name: 'app_boat_modif', methods: ['GET', 'POST'])]
+    public function modif(Request $request,Boat $boat,EntityManagerInterface $entityManager, CacheInterface $cache): Response
+    {
+        $form = $this->createForm(BoatType::class, $boat);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->flush();
+
+            $cache->delete('boat_item_'. $boat->getId());
+
+            $this->addFlash('success', "Le bateau a été modifé");
+
+            return $this->redirectToRoute('app_boat_propio', [
+                'firstname' => $boat->getAccount()->getFirstname()
+            ]);
+        }
+
+        return $this->render('boat/modif.html.twig', [
+            'form' => $form->createView(),
+            'boat' => $boat
         ]);
     }
 }

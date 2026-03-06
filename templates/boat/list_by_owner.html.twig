@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bateaux de {{ firstname }}{% endblock %}
+
+{% block body %}
+    <h1>Liste des bateaux de {{ firstname }}</h1>
+
+    <ul>
+        {% for boat in boats %}
+            <li>Nom du bateau : "{{ boat.name }}"<br>
+                Prix du bateau : "{{ boat.purchasePrice }}"<br>
+
+                <a href="{{ path('app_boat_modif', {id: boat.id}) }}" class="btn btn-primary">Modifier</a>
+            </li>
+            <br>
+        {% else %}
+            <li>Aucun bateau trouvé pour ce client.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_home') }}">Retour à l'accueil</a>
+{% endblock %}

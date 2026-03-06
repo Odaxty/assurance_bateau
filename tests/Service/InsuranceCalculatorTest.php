@@ -17,7 +17,7 @@ class InsuranceCalculatorTest extends TestCase
         $boat1->setPurchasePrice(100000); //prime attendue : 2000
 
         $boat2 = new Boat();
-        $boat2->setPurchasePrice(3000000); //prime attendue : 30 000
+        $boat2->setPurchasePrice(3000000); //prime attendue : 42 650
 
         $account->addBoat($boat1);
         $account->addBoat($boat2);
@@ -25,6 +25,6 @@ class InsuranceCalculatorTest extends TestCase
         $price2 = $calculator->calculatePremium($boat2);
         $total=$price1 + $price2;
 
-        $this->assertEquals(32000, $total); //vérification total
+        $this->assertEquals(44650, $total); //vérification total
     }
 }

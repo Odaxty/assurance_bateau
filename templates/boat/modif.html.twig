@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le bateau{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Modifier le bateau : {{ boat.name }}</h1>
+        <p>ID du bateau : {{ boat.id }}</p>
+
+        <div class="card shadow-sm p-4">
+            {{ form_start(form) }}
+
+            <div class="mb-3">
+                {{ form_row(form.name, {'label': 'Nom du bateau'}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.purchasePrice, {'label': 'Prix d\'achat (€)'}) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+
+            {{ form_end(form) }}
+        </div>
+
+        <hr>
+        <a href="{{ path('app_boat_propio', {'firstname': boat.account.firstname}) }}" class="btn btn-secondary">
+            Retour à la liste
+        </a>
+    </div>
+{% endblock %}
