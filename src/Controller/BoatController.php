@@ -49,17 +49,7 @@ final class BoatController extends AbstractController
             'account' => $account
         ]);
     }
-
-    #[Route('/account/{firstname}/boats', name: 'app_account_boats')]
-    public function listByAccount(string $firstname, AccountRepository $accountRepository): Response
-    {
-        $account = $accountRepository->findOneBy(['firstname' => $firstname]);
-
-        return $this->render('account/boats.html.twig', [
-            'account' => $account,
-            'boats' => $account->getBoats()
-        ]);
-    }
+    
     #[Route('/liste-des-bateaux', name: 'app_boat_list')]
     public function list(BoatRepository $boatRepository): Response
     {
